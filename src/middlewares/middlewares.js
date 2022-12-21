@@ -78,23 +78,11 @@ getPokemonsById : async (id)=>{
 getPokemons: async ()=>{
 
 
-    const a = await Pokemon.count()
-
-    if(a){
-        return traerPokemons()
-    }else{
-        const a= await SubirPokemonesABd()
-        
-        while (null===await Pokemon.findOne({where:{pokeNumber:40}})) {
-            
-        }
-           return traerPokemons()
-
-
-        
-       
-    }
-   
+    const PokemonsFromDB = await Pokemon.findAll()        
+    const PokemonsFromApi = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=40`)
+    const PfaJson = await a.json()
+    const SumaDeAmbos=[...PokemonsFromDB,...PfaJson]
+    return SumaDeAmbos
    
 
 

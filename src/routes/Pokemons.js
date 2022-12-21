@@ -2,7 +2,7 @@ const { Router } = require("express");
 const {Pokemon} = require("../db")
 
 const router = Router()
-const {getPokemonsById, SubirPokemonesABd,sendPokemonToTrash, getPokemonsByName,createNewPokemon,getPokemons,restorePokemons, getPokemonsFromTrash} = require("../middlewares/middlewares.js")
+const {getPokemonsById,getPokemonsByName,createNewPokemon,getPokemons,restorePokemons, getPokemonsFromTrash} = require("../middlewares/middlewares.js")
 
 const fetch = require("node-fetch")
 
