@@ -80,8 +80,8 @@ getPokemons: async ()=>{
 
     const PokemonsFromDB = await Pokemon.findAll()        
     const PokemonsFromApi = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=40`)
-    const PfaJson = await a.json()
-    const SumaDeAmbos=[...PokemonsFromDB,...PfaJson]
+    const PfaJson = await PokemonsFromApi.json()
+    const SumaDeAmbos=[...PfaJson.results, ...PokemonsFromDB]
     return SumaDeAmbos
    
 
