@@ -56,37 +56,30 @@ module.exports = {
     }
   },
 
-  getPokemons: async () => {
-    const PokemonsFromDB = await Pokemon.findAll();
-    const PokemonsFromApi = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/?limit=40`
-    );
-    const PfaJson = await PokemonsFromApi.json();
-    let PokemonsFromApiChanged = [];
+  getPokemons: async () => {getPokemons: async ()=>{
 
-    PfaJson.results.forEach(async (pokemon) => {
-      const data = await fetch(pokemon.url);
-      let dataJson = await data.json();
-      let typesArray = [];
-      b.types.forEach((element) => typesArray.push(element.type.name));
-      let typesJoined = typesArray.join().replace(",", ", ");
-      dataTransformed = {
-        name: dataJson.name,
-        health: dataJson.stats[0].base_stat,
-        attack: dataJson.stats[1].base_stat,
-        defense: dataJson.stats[2].base_stat,
-        speed: dataJson.stats[5].base_stat,
-        height: dataJson.height,
-        weight: dataJson.weight,
-        pokeNumber: dataJson.id,
-        type: typesJoined,
-        img: dataJson.sprites.other["official-artwork"].front_default,
-      };
-      PokemonsFromApiChanged.push(dataTransformed)
-    });
 
-    const SumaDeAmbos = [...PokemonsFromApiChanged, ...PokemonsFromDB];
-    return SumaDeAmbos
+    const a = await Pokemon.count()
+
+    if(a){
+        return traerPokemons()
+    }else{
+        const a= await SubirPokemonesABd()
+        
+        while (null===await Pokemon.findOne({where:{pokeNumber:40}})) {
+            
+        }
+           return traerPokemons()
+
+
+        
+       
+    }
+   
+   
+
+
+},
   },
   getPokemonsFromTrash: async () => {
     const pokemonsFromTrash = await Deleted.findAll();
