@@ -56,7 +56,7 @@ module.exports = {
     }
   },
 
-  getPokemons: async () => {getPokemons: async ()=>{
+  getPokemons: async ()=>{
 
 
     const a = await Pokemon.count()
