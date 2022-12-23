@@ -80,7 +80,7 @@ module.exports = {
 
 
 },
-  },
+  
   getPokemonsFromTrash: async () => {
     const pokemonsFromTrash = await Deleted.findAll();
     return pokemonsFromTrash;
